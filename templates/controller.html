@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Camera Controller</title>
+</head>
+
+<body>
+<a href="javascript:void(0);" onclick="invoke('0')"><h2>Synced</h2></a>
+<a href="javascript:void(0);" onclick="invoke('t3')"><h2>Test pin 3</h2></a>
+<a href="javascript:void(0);" onclick="invoke('t4')"><h2>Test pin 4</h2></a>
+<a href="javascript:void(0);" onclick="invoke('1')"><h2>1/10s cap</h2></a>
+<a href="javascript:void(0);" onclick="invoke('30')"><h2>1/30 cap</h2></a>
+</body>
+
+<script>
+    function invoke(data) {
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        httpRequest.open('GET', './capture/' + data, true);//第二步：打开连接  将请求参数写在url中
+        httpRequest.send();
+    }
+</script>
+</html>
