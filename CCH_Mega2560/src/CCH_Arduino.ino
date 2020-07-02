@@ -3,8 +3,9 @@
 unsigned int interval = 1000/30; //Milliseconds
 const int pins[] = {3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50};
 const int cameraCount = sizeof(pins) / sizeof(pins[0]);
-const unsigned long msb = 2 << (cameraCount - 1);
-unsigned long data = 0;
+const unsigned long long int msb = 2ULL << (cameraCount - 1);
+//const unsigned long long int one = 1;
+unsigned long long int data = 0;
 unsigned long int now = 0;
 bool btnready = true;
 
@@ -57,7 +58,7 @@ void loop() {
     //Serial.print("data");
     //Serial.println(String(data,BIN));
     for(int i=0; i<cameraCount; ++i) {
-      digitalWrite(pins[i], (int)(!(data & (1 << i))));
+      digitalWrite(pins[i], (!(data & (1ULL << i))));
     }
     data = data << 1;
     if(digitalRead(2) == LOW && btnready) {btnready = false; trigger();}
