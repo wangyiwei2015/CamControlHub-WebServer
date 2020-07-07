@@ -1,7 +1,9 @@
 #include <Arduino.h>
 
 unsigned int interval = 1000/30; //Milliseconds
-const int pins[] = {3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50};
+//                                        13            19           24                                     38 40         45                                   58~
+//const int pins[] = {3,4,5,6,7,8,9,10,11,12,14,15,16,17,18,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,39,41,42,43,44,46,47,48,49,50,51,52,53,54,55,56,57,A5,A6,A7,A8,A9,A10,A11,A12,A13};
+const int pins[] = {68,39,18,62,20,34,11,21,22,5,9,8,14,17,25,7,32,12,4,10,3,31,65,15,29,33,16,27,67,23,56,48,30,42,50,49,55,41,37,26,44,43,51,54,47,6,46,36,52,57,28,35,53};
 const int cameraCount = sizeof(pins) / sizeof(pins[0]);
 const unsigned long long int msb = 2ULL << (cameraCount - 1);
 //const unsigned long long int one = 1;
@@ -19,11 +21,12 @@ void setup() {
     pinMode(pins[i], OUTPUT);
     digitalWrite(pins[i], 1);
   }
-  pinMode(2,INPUT_PULLUP);
   //interrupt: button -> trigger()
  // attachInterrupt(2, trigger, FALLING);
   Serial.begin(115200);
   delay(1000);
+
+  //int a = 68;pinMode(a,OUTPUT);digitalWrite(a,0);delay(100);digitalWrite(a,1);
   Serial.print("Welcome to Camera Controller App.\nUsage:\n  send number to set framerate and fire immediately.\n  1 = 1/10s, 2 = 1/20s, ... n = 1/n0s\n  send 0 to fire all devices.");
 }
 
